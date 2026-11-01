@@ -577,7 +577,7 @@ int main(int argc, char** argv) {
                 auto empty = std::make_shared<TextWidget>(
                     "No events today", 13.0f);
                 empty->setColor(Color{0.4f, 0.4f, 0.45f, 1.0f});
-                day_col->addChild(std::make_shared<ContainerWidget>(16.0f, 0.0f, empty));
+                day_col->addChild([&]{ auto c = std::make_shared<FlexColumn>(std::vector<std::shared_ptr<Widget>>{empty}); c->setPadding(16.0f); return c; }());
             }
 
             for (const auto* ep : day_events) {
